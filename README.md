@@ -10,3 +10,10 @@ Directory description
 
 ### Note
 V10 is added to the master branch without extensive tests. Feel free to report or fix bugs.
+
+
+### Dependencies
+
+```shell-sessions
+sudo apt install gcc-multilib
+```

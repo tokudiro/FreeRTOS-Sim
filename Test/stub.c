@@ -1,0 +1,104 @@
+#include <stdint.h>
+#include <sys/types.h>
+#include "projdefs.h"
+#include "portable.h"
+#include "FreeRTOS.h"
+#include "list.h"
+
+void
+vPortDefineHeapRegions( const HeapRegion_t * const pxHeapRegions )
+{
+}
+
+#if( portUSING_MPU_WRAPPERS == 1 )
+StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters, BaseType_t xRunPrivileged ) PRIVILEGED_FUNCTION
+{
+  return 0;
+}
+#else
+StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters ) PRIVILEGED_FUNCTION
+{
+  return 0;
+}
+#endif
+
+unsigned long ulPortGetTimerValue( void )
+{
+}
+
+UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION
+{
+}
+void vCoRoutineSchedule( void )
+{
+}
+void vApplicationIdleHook( void )
+{
+}
+void vApplicationTickHook( void )
+{
+}
+
+void vAssertCalled( unsigned long ulLine, const char * const pcFileName )
+{
+}
+void vListInitialise( List_t * const pxList ) PRIVILEGED_FUNCTION
+{
+}
+void vListInitialiseItem( ListItem_t * const pxItem ) PRIVILEGED_FUNCTION
+{
+}
+
+void vListInsert( List_t * const pxList, ListItem_t * const pxNewListItem ) PRIVILEGED_FUNCTION
+{
+}
+void vListInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem ) PRIVILEGED_FUNCTION
+{
+}
+void vPortAddTaskHandle( void *pxTaskHandle )
+{
+}
+void vPortClearInterruptMask( portBASE_TYPE xMask )
+{
+}
+void vPortDisableInterrupts( void )
+{
+}
+void vPortEndScheduler( void ) PRIVILEGED_FUNCTION
+{
+}
+void vPortEnterCritical( void )
+{
+}
+void vPortExitCritical( void )
+{
+}
+void vPortFindTicksPerSecond( void )
+{
+}
+void vPortForciblyEndThread( void *pxTaskToDelete )
+{
+}
+void *pvPortMalloc( size_t xSize ) PRIVILEGED_FUNCTION
+{
+  return 0;
+}
+void vPortFree( void *pv ) PRIVILEGED_FUNCTION
+{
+}
+void vPortYield( void )
+{
+}
+
+BaseType_t xPortSetInterruptMask( void )
+{
+  return 0;
+}
+BaseType_t xPortStartScheduler( void ) PRIVILEGED_FUNCTION
+{
+  return 0;
+}
+BaseType_t xTimerCreateTimerTask( void ) PRIVILEGED_FUNCTION
+{
+  return 0;
+}

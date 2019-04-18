@@ -1,2 +1,9 @@
 /FreeRTOS-Sim
 /obj/
+*~
+*.o
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+/Test/test_tasks

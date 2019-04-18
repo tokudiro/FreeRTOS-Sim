@@ -1,0 +1,24 @@
+MAKETOP:=..
+CPPFLAGS=-I$(MAKETOP)/Project -I$(MAKETOP)/Source/include/ -I$(MAKETOP)/Source/portable/GCC/POSIX/
+CFLAGS=-g -O0 -Werror -Wall
+LDFLAGS=-lpthread
+
+all: test_tasks
+
+tasks.o: $(MAKETOP)/Source/tasks.c
+	gcc -c -o $@ $(CPPFLAGS) $^
+
+stub.o: stub.c
+	gcc -c -o $@ $(CPPFLAGS) $^
+
+test_tasks.o: test_tasks.cpp
+	gcc -c -o $@ $(CPPFLAGS) $^
+
+test_tasks: stub.o tasks.o test_tasks.o
+	g++ -o $@ $(CPPFLAGS) $(LDFLAGS) $^ `pkg-config --libs cpputest`
+
+
+clean:
+	rm -f test_tasks *~ *.o
+
+.PHONY: clean all

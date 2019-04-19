@@ -8,10 +8,7 @@ all: test_tasks
 tasks.o: $(MAKETOP)/Source/tasks.c
 	gcc -c -o $@ $(CPPFLAGS) $^
 
-stub.o: stub.c
-	gcc -c -o $@ $(CPPFLAGS) $^
-
-test_tasks.o: test_tasks.cpp
+.c.o:
 	gcc -c -o $@ $(CPPFLAGS) $^
 
 test_tasks: stub.o tasks.o test_tasks.o

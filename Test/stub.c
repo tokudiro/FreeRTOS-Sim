@@ -39,10 +39,12 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 
 unsigned long ulPortGetTimerValue( void )
 {
+  return 0;
 }
 
 UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove ) PRIVILEGED_FUNCTION
 {
+  return 0;
 }
 void vCoRoutineSchedule( void )
 {

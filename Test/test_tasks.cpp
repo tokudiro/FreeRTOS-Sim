@@ -9,11 +9,8 @@ extern "C" {
 
 TEST_GROUP(xTaskCreate)
 {
-  void* className;
-
   void setup()
   {
-    className = NULL;
   }
   void teardown()
   {

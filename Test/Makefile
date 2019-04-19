@@ -6,13 +6,13 @@ LDFLAGS=-lpthread
 all: test_tasks
 
 tasks.o: $(MAKETOP)/Source/tasks.c
-	gcc -c -o $@ $(CPPFLAGS) $^
+	gcc -c -o $@ $(CPPFLAGS) $(CFLAGS) $^
 
 .c.o:
-	gcc -c -o $@ $(CPPFLAGS) $^
+	gcc -c -o $@ $(CPPFLAGS) $(CFLAGS) $^
 
 test_tasks: stub.o tasks.o test_tasks.o
-	g++ -o $@ $(CPPFLAGS) $(LDFLAGS) $^ `pkg-config --libs cpputest`
+	g++ -o $@ $(LDFLAGS) $^ `pkg-config --libs cpputest`
 
 
 clean:

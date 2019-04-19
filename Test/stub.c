@@ -1,9 +1,24 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include "projdefs.h"
 #include "portable.h"
 #include "FreeRTOS.h"
 #include "list.h"
+
+static int malloc_fail = 0;
+
+void
+stub_reset (void)
+{
+  malloc_fail = 0;
+}
+
+void
+stub_set_malloc_fail (void)
+{
+  malloc_fail = 1;
+}
 
 void
 vPortDefineHeapRegions( const HeapRegion_t * const pxHeapRegions )
@@ -81,7 +96,10 @@ void vPortForciblyEndThread( void *pxTaskToDelete )
 }
 void *pvPortMalloc( size_t xSize ) PRIVILEGED_FUNCTION
 {
-  return 0;
+  if (malloc_fail)
+    return NULL;
+
+  return malloc (xSize);
 }
 void vPortFree( void *pv ) PRIVILEGED_FUNCTION
 {

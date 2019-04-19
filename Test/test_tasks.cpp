@@ -4,9 +4,10 @@
 extern "C" {
 #include "FreeRTOS.h"
 #include "task.h"
+#include "stub.h"
 }
 
-TEST_GROUP(ClassName)
+TEST_GROUP(xTaskCreate)
 {
   void* className;
 
@@ -16,33 +17,21 @@ TEST_GROUP(ClassName)
   }
   void teardown()
   {
-    ;
+    stub_reset ();
   }
 };
 
-#if 0
-	BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-							const char * const pcName,	/*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-							const configSTACK_DEPTH_TYPE usStackDepth,
-							void * const pvParameters,
-							UBaseType_t uxPriority,
-							TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
-#endif
-
-TEST(ClassName, Create)
+TEST(xTaskCreate, allocFail)
 {
-  CHECK(0 == className);
-  CHECK(true);
-  CHECK_EQUAL(1,1);
-  LONGS_EQUAL(1,1);
-  DOUBLES_EQUAL(1.000, 1.001, .01);
-  STRCMP_EQUAL("hello", "hello");
-  xTaskCreate (NULL,
-               "TaskName",
-               0,
-               NULL,
-               0,
-               NULL);
+  stub_set_malloc_fail ();
+  CHECK_EQUAL(errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY,
+              xTaskCreate (NULL, "TaskName", 0, NULL, 0, NULL));
+}
+
+TEST(xTaskCreate, Success)
+{
+  CHECK_EQUAL(pdPASS,
+              xTaskCreate (NULL, "TaskName", 0, NULL, 0, NULL));
 }
 
 int
